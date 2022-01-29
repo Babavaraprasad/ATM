@@ -6,11 +6,16 @@ function MoneyType({ value, result, backButtonHandler }) {
 	const coinsAndNotes = Object.keys(result).map((v) => Number(v));
 	console.log("result",result);
 	const notes = coinsAndNotes.filter((m) => m >= 50);
+console.log("notes",notes);
 
 	const bigCoins = coinsAndNotes.filter((m) => m < 50 && m >= 2 && m !== 10);
 
+	console.log("bigcoins",bigCoins);
+
+
 	const smallCoins = coinsAndNotes.filter((m) => m === 10 || m === 1);
 
+	console.log("smallcoins",smallCoins);
 	return (
 		<div className="container">
 			<div className="backButton" onClick={backButtonHandler}>
@@ -61,7 +66,7 @@ function MoneyType({ value, result, backButtonHandler }) {
 				)}
 				<div className="text">
 					<p>Thank you for using</p>
-					<p>Enalyzer ATM</p>
+					<p>ATM</p>
 				</div>
 			</div>
 		</div>

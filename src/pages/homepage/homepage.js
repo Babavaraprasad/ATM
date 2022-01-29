@@ -4,6 +4,7 @@ import DialPadButton from "../../components/dialpad/dialpadButton";
 import InputField from "../../components/inputfield/inputField";
 import MoneyType from "../moneytypepage/moneyTypePage";
 import ArrowIcon from "../../components/icons/arrowIcon";
+import { clear } from "@testing-library/user-event/dist/clear";
 
 const keyPadValues = [...new Array(9)];
 
@@ -11,6 +12,7 @@ function Homepage() {
 	const [value, setValue] = useState("");
 	const [showMoneyView, setShowMoneyView] = useState(false);
 	const [result, setResult] = useState();
+	
 
 	const onButtonClick = (e) => {
 		setValue(`${value}${e}`);
@@ -21,14 +23,15 @@ function Homepage() {
 		setValue(newValue);
 	};
 
+
 	const calculateHandler = () => {
 		const result = getNotes(value);
 		setResult(result);
 		setShowMoneyView(true);
 	};
 	const getNotes = (value) => {
-		let result = {};
-		const moneyTypes = [1000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
+		const result = {};
+		const moneyTypes = [1000, 500, 200, 100, 50, 20, 10, 5, 2,1];
 		moneyTypes.forEach((money) => {
 			let mulValue = Math.floor(value / money);
 			if (mulValue >= 1) {
@@ -42,7 +45,7 @@ function Homepage() {
 	const backButtonHandler = () => {
 		setShowMoneyView(false);
 	};
-
+	console.log(value);
 	return (
 		<div className="homepage">
 			{!showMoneyView && (
@@ -63,7 +66,7 @@ function Homepage() {
 						<DialPadButton keypadvalue={"0"} onClickHandler={onButtonClick} />
 					</div>
 					<button
-						className={`submit ${value ? "" : "disabled"}`}
+						className={`submit ${Number(value) ? "" : "disabled"}`}
 						onClick={calculateHandler}
 					>
 						submit
